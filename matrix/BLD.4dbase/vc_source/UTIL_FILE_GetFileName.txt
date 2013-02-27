@@ -1,0 +1,25 @@
+﻿//%attributes = {"lang":"en","invisible":true} comment added and reserved by 4D.
+C_TEXT($1;$filePath_t)
+
+C_TEXT($0;$fileName_t)
+C_LONGINT($length_l;$pos_l;$i)
+
+$filePath_t:=$1
+
+$length_l:=Length($filePath_t)
+$pos_l:=0
+
+For ($i;$length_l;1;-1)
+If ($filePath_t[[$i]]=Folder separator )
+$pos_l:=$i
+$i:=0
+End if 
+End for 
+
+If ($pos_l>0)
+$fileName_t:=Substring($filePath_t;$pos_l+1)
+Else 
+$fileName_t:=$filePath_t
+End if 
+
+$0:=$fileName_t

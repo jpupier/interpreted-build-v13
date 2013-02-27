@@ -1,0 +1,38 @@
+﻿//%attributes = {"lang":"en","invisible":true} comment added and reserved by 4D.
+// --[HEADERSTART]-------------------------------------
+// User name (OS): Joshua Fletcher
+// Date and time: 10/11/12, 11:14:50
+// ----------------------------------------------------
+// Description:
+//   Get the name of the database.
+//
+// --[HEADEREND]---------------------------------------
+C_TEXT($1;$target_t)
+
+C_TEXT($0;$databaseName_t)
+
+C_TEXT($targetHost_t;$targetComponent_t)
+C_TEXT($structureFilePath_t;$structureFile_t)
+
+$targetHost_t:="host"
+$targetComponent_t:="component"
+
+$target_t:=$1
+
+Case of 
+: ($target_t=$targetHost_t)
+$structureFilePath_t:=Structure file(*)
+
+: ($target_t=$targetComponent_t)
+$structureFilePath_t:=Structure file
+
+Else 
+// Assume it's *this* database.
+$structureFilePath_t:=Structure file
+End case 
+
+$structureFile_t:=UTIL_FILE_GetFileName ($structureFilePath_t)
+
+$databaseName_t:=Substring($structureFile_t;1;Length($structureFile_t)-4)
+
+$0:=$databaseName_t
