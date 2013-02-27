@@ -1,6 +1,4 @@
 .svn/
-/matrix/BLD.4dbase/*.4DLink
-/matrix/BLD.4dbase/*.bat
 /matrix/BLD.4dbase/Logs
 /matrix/BLD.4dbase/Preferences
 .DS_Store
