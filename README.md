@@ -24,7 +24,7 @@ Execute the shared method "BLD_Build" to build your project.
 
 If you modify the matrix database, you should build a new component.  To build a new component, execute the BLD_Build method from within the matrix database (MISC I is already installed in the matrix database).
 
-If you would like to include BLD.4dbase in a 4D project managed on github, consider using SVN (I'm not joking).
+If you would like to link this component in a 4D project managed on github, consider dropping git and using SVN Externals (I'm not joking).
 
 ## Known Issues
 
