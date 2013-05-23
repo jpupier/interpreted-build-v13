@@ -14,7 +14,6 @@ The BLD component facilitates automatic building of interpreted 4D components. 4
 * The [Components](https://github.com/4D/interpreted-build-v13/tree/master/Components) folder contains the interpreted component "BLD.4dbase" suitable for installation in any [4D v13](http://www.4d.com/products/4dv13.html) database.
 * The [Plugins](https://github.com/4D/interpreted-build-v13/tree/master/Plugins) folder contains the required "MISC I" plug-in.
 * The [matrix](https://github.com/4D/interpreted-build-v13/tree/master/matrix) folder contains the component source code.
-* The [doc](https://github.com/4D/interpreted-build-v13/tree/master/doc) may contain documentation about the component...or I may use the Wiki...haven't decided yet :)
 
 ## Usage
 
