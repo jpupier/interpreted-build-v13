@@ -1,2 +1,3 @@
 ﻿//%attributes = {"lang":"en","invisible":true} comment added and reserved by 4D.
 C_LONGINT(CURRENTVERSION_L)
+C_TEXT(CURRENT4DVERSION_T)

@@ -1,0 +1,17 @@
+﻿//%attributes = {"lang":"en","invisible":true} comment added and reserved by 4D.
+// --[HEADERSTART]-------------------------------------
+// User name (OS): Joshua Fletcher
+// Date and time: 05/23/13, 14:41:15
+// ----------------------------------------------------
+// Description:
+//   Return 4D major version as text.
+//
+// --[HEADEREND]---------------------------------------
+C_TEXT($0;$4DMajorVersion_t)
+
+C_TEXT($4DFullVersion_t)
+
+$4DFullVersion_t:=Application version
+$4DMajorVersion_t:=Substring($4DFullVersion_t;1;2)
+
+$0:=$4DMajorVersion_t

@@ -16,6 +16,7 @@
 //   creates compiled components.
 // --[HEADEREND]---------------------------------------
 C_LONGINT(CurrentVersion_l)
+C_TEXT(Current4DVersion_t)
 
 C_TEXT($databasePackage_t)
 C_TEXT($projectRoot_t)
@@ -53,7 +54,7 @@ $sourceBin_t:=Get 4D folder(Database Folder ;*)+"bin"+Folder separator
 
 // The current version is used as a file name.
 CurrentVersion_l:=BLD_GetVersion 
-
+Current4DVersion_t:=UTIL_Get4DMajorVersion 
 
 //===============================================================
 // Build actions
