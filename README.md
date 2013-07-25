@@ -19,6 +19,8 @@ The BLD component facilitates automatic building of interpreted 4D components. 4
 
 You must install both the "BLD.4dbase" component and "MISC I" plug-in in order for the build to work correctly.
 
+*IMPORTANT NOTE:* you must install the components in the Components folder, aliases are not supported.
+
 Execute the shared method "BLD_Build" to build your project.
 
 If you modify the matrix database, you should build a new component.  To build a new component, execute the BLD_Build method from within the matrix database (MISC I is already installed in the matrix database).
