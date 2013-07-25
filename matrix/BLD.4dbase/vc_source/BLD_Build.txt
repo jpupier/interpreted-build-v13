@@ -15,12 +15,14 @@
 //   interpreted component; 4D's build feature only
 //   creates compiled components.
 // --[HEADEREND]---------------------------------------
+C_TEXT($1;$componentFolderName_t)
+C_TEXT($2;$projectRoot_t)
+
 C_LONGINT(CurrentVersion_l)
 C_TEXT(Current4DVersion_t)
 
-C_TEXT($databasePackage_t)
-C_TEXT($projectRoot_t)
 C_TEXT($componentFolder_t)
+C_TEXT($databasePackage_t)
 C_TEXT($sourceMacros_t)
 C_TEXT($sourceResources_t)
 C_TEXT($sourceBin_t)
@@ -34,13 +36,24 @@ CONFIRM("This will quit 4D in order to complete the build, okay?")
 
 If (OK=1)
 
+// Handle parameters
+If (Count parameters>=1)
+$componentFolderName_t:=$1
+Else 
+$componentFolderName_t:="Components"
+End if 
+
+If (Count parameters>=2)
+$projectRoot_t:=$2
+Else 
+// Default Project root is 2 levels up from the database folder because I usually store the source in "matrix".
+$projectRoot_t:=UTIL_FILE_GetParent (UTIL_FILE_GetParent (Get 4D folder(Database Folder ;*)))
+End if 
+
 $databasePackage_t:=UTIL_FILE_GetDatabaseName ("host")+".4dbase"
 
-// Project root is 2 levels up from the database folder.
-$projectRoot_t:=UTIL_FILE_GetParent (UTIL_FILE_GetParent (Get 4D folder(Database Folder ;*)))
-
-// This folder contains the component.
-$componentFolder_t:=$projectRoot_t+"Components"+Folder separator +$databasePackage_t+Folder separator 
+// This folder contains the output interpreted component.
+$componentFolder_t:=$projectRoot_t+$componentFolderName_t+Folder separator +$databasePackage_t+Folder separator 
 
 // This folder contains necessary macros to run the component, if any.
 $sourceMacros_t:=Get 4D folder(Database Folder ;*)+"Macros v2"+Folder separator 
