@@ -1,0 +1,26 @@
+﻿//%attributes = {"lang":"en","shared":true} comment added and reserved by 4D.
+// --[HEADERSTART]-------------------------------------
+// User name (OS): Joshua Fletcher
+// Date and time: 07/25/13, 15:59:23
+// ----------------------------------------------------
+// Description:
+//   Return content for the simple verioning file.
+//
+// --[HEADEREND]---------------------------------------
+// I found a need to have this file outside of the build process so abstracted into a method.
+C_BLOB($0;$versionFile_b)
+
+C_BLOB($versionTemplate_b)
+C_TEXT($versionTemplate_t)
+C_TEXT($versionFile_t)
+
+// These variables are used by PROCESS 4D TAGS.
+CurrentVersion_l:=BLD_GetVersion 
+Current4DVersion_t:=UTIL_Get4DMajorVersion 
+
+DOCUMENT TO BLOB(Get 4D folder(Current Resources folder )+"version_template.txt";$versionTemplate_b)
+$versionTemplate_t:=Convert to text($versionTemplate_b;"UTF-8")
+PROCESS 4D TAGS($versionTemplate_t;$versionFile_t)
+CONVERT FROM TEXT($versionFile_t;"UTF-8";$versionFile_b)
+
+$0:=$versionFile_b

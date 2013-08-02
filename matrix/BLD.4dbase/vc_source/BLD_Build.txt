@@ -18,17 +18,13 @@
 C_TEXT($1;$componentFolderName_t)
 C_TEXT($2;$projectRoot_t)
 
-C_LONGINT(CurrentVersion_l)
-C_TEXT(Current4DVersion_t)
-
 C_TEXT($componentFolder_t)
 C_TEXT($databasePackage_t)
 C_TEXT($sourceMacros_t)
 C_TEXT($sourceResources_t)
 C_TEXT($sourceBin_t)
 
-C_BLOB($versionTemplate_b)
-C_TEXT($versionTemplate_t)
+C_BLOB($versionFile_b)
 
 If (BLD_CheckForMiscI )
 
@@ -65,10 +61,6 @@ $sourceResources_t:=Get 4D folder(Current Resources folder ;*)
 // NOTE: only applies to this component, will be skipped for hosts.
 $sourceBin_t:=Get 4D folder(Database Folder ;*)+"bin"+Folder separator 
 
-// The current version is used as a file name.
-CurrentVersion_l:=BLD_GetVersion 
-Current4DVersion_t:=UTIL_Get4DMajorVersion 
-
 //===============================================================
 // Build actions
 
@@ -100,14 +92,11 @@ COPY DOCUMENT($sourceBin_t;$componentFolder_t)
 End if 
 
 // Create versioning file
-DOCUMENT TO BLOB(Get 4D folder(Current Resources folder )+"version_template.txt";$versionTemplate_b)
-$versionTemplate_t:=Convert to text($versionTemplate_b;"UTF-8")
-PROCESS 4D TAGS($versionTemplate_t;$versionTemplate_t)
-CONVERT FROM TEXT($versionTemplate_t;"UTF-8";$versionTemplate_b)
-BLOB TO DOCUMENT($componentFolder_t+"version.txt";$versionTemplate_b)
+$versionFile_b:=BLD_GetVersionFile 
+BLOB TO DOCUMENT($componentFolder_t+"version.txt";$versionFile_b)
 
 // Execute a script that will copy files after 4D has quit.
-BLD_Finalize ($projectRoot_t)
+BLD_Finalize ($projectRoot_t;$componentFolderName_t)
 
 QUIT 4D
 End if 

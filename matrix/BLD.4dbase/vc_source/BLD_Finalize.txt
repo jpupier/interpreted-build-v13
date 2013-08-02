@@ -9,11 +9,13 @@
 //    Copy INDY <- Script
 // --[HEADEREND]---------------------------------------
 C_TEXT($1;$projectRoot_t)
+C_TEXT($2;$componentFolderName_t)
 
 C_TEXT($binFolder_t;$pathToFinalize_t;$finalizeCommand_t;$componentName_t)
 C_LONGINT($pidOf4D_l)
 
 $projectRoot_t:=$1
+$componentFolderName_t:=$2
 
 // This folder contains the script to finish the build (copy the structure files).
 $binFolder_t:=Get 4D folder(Database Folder )+"bin"+Folder separator 
@@ -30,7 +32,7 @@ $pathToFinalize_t:=$binFolder_t+"bld_finalize.sh"
 $finalizeCommand_t:="bash "+$pathToFinalize_t+" "+String($pidOf4D_l)
 Else 
 $pathToFinalize_t:=$binFolder_t+"bld_finalize.bat"
-$finalizeCommand_t:="cmd.exe /Cstart \"Build Component\" \""+$pathToFinalize_t+"\""+" "+String($pidOf4D_l)+" "+$componentName_t
+$finalizeCommand_t:="cmd.exe /Cstart \"Build Component\" \""+$pathToFinalize_t+"\""+" "+String($pidOf4D_l)+" "+$componentName_t+" "+$componentFolderName_t
 End if 
 
 // Set the current directory in which the script file will execute.
